@@ -31,7 +31,7 @@ publish:
 
 deploy:
   kubernetes:
-    image: quay.io/ukhomeofficedigital/dronescheduler
+    image: quay.io/ukhomeofficedigital/drone-kubernetes:latest
     registry: quay.io
     replicationcontrollers:
       - kubernetes/dronescheduler-rc.yaml
