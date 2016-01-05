@@ -29,15 +29,15 @@ publish:
 
     branch: master
 
-# deploy:
-#   kubernetes:
-#     image: quay.io/ukhomeofficedigital/remotedrone
-#     registry: quay.io
-#     replicationcontrollers:
-#       - kubernetes/remotedrone-rc.yaml
-#     services: []
-#     token: $$TOKEN
-#     apiserver: https://kubeapi-dev.dsp.notprod.homeoffice.gov.uk:6443
-#     namespace: default
-#     debug: false
-#     tag: v0.0.$$BUILD_NUMBER
+deploy:
+  kubernetes:
+    image: quay.io/ukhomeofficedigital/dronescheduler
+    registry: quay.io
+    replicationcontrollers:
+      - kubernetes/dronescheduler-rc.yaml
+    services: []
+    token: $$TOKEN
+    apiserver: https://kubeapi-dev.dsp.notprod.homeoffice.gov.uk:6443
+    namespace: default
+    debug: false
+    tag: v0.0.$$BUILD_NUMBER
