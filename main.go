@@ -37,6 +37,11 @@ func main() {
 	client := drone.NewClientToken(host, token)
 	owner, name := parseRepo(repo)
 
+	log.Println(token)
+	log.Println(host)
+	log.Println(repo)
+	log.Println(branch)
+
 	// get the latest build for the specified repository
 	build, err := client.BuildLast(owner, name, branch)
 	if err != nil {
