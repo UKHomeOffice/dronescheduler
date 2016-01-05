@@ -1,0 +1,43 @@
+debug: true
+
+build:
+  image: golang:1.5.1
+  environment:
+    - GO15VENDOREXPERIMENT=1
+  environment:
+    - GOPATH=/remotedrone
+  commands:
+    - go get github.com/drone/drone-go/drone
+    - go test
+    - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo
+
+publish:
+  docker:
+    registry: quay.io
+    environment:
+      - DOCKER_LAUNCH_DEBUG=true
+    username: $$QUAY_USER
+    password: $$QUAY_PASSWORD
+    email: $$QUAY_EMAIL
+    repo: quay.io/ukhomeofficedigital/remotedrone
+    storage_driver: vfs
+    tag:
+      - latest
+      - v0.0.$$BUILD_NUMBER
+    when:
+      branch: master
+
+    branch: master
+
+# deploy:
+#   kubernetes:
+#     image: quay.io/ukhomeofficedigital/remotedrone
+#     registry: quay.io
+#     replicationcontrollers:
+#       - kubernetes/remotedrone-rc.yaml
+#     services: []
+#     token: $$TOKEN
+#     apiserver: https://kubeapi-dev.dsp.notprod.homeoffice.gov.uk:6443
+#     namespace: default
+#     debug: false
+#     tag: v0.0.$$BUILD_NUMBER

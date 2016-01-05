@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: dronescheduler
+    drone: scheduler
+  name: dronescheduler
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: dronescheduler
+    spec:
+      containers:
+      - image: quay.io/ukhomeofficedigital/dronescheduler:latest
+        name: dronescheduler
+        env:
+          - name: CRONTASK_1
+            value: "*/2 * * * * /dronescheduler"
+          - name: HOST
+            value: "https://drone.notprod.homeoffice.gov.uk"
+          - name: TOKEN
+            value: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZXh0IjoiaXBlZHJhemFzIiwidHlwZSI6InVzZXIifQ.GZl0N0PSL5ZpqHfmg4NYMl-3pHqDXyCqeZROuWx4Js4"
+          - name: REPO
+            value: "UKHomeOffice/dronescheduler"
+          - name: BRANCH
+            value: "master"
+
