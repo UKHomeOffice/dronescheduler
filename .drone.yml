@@ -5,7 +5,7 @@ build:
   environment:
     - GO15VENDOREXPERIMENT=1
   environment:
-    - GOPATH=/remotedrone
+    - GOPATH=/dronescheduler
   commands:
     - go get github.com/drone/drone-go/drone
     - go test
@@ -19,7 +19,7 @@ publish:
     username: $$QUAY_USER
     password: $$QUAY_PASSWORD
     email: $$QUAY_EMAIL
-    repo: quay.io/ukhomeofficedigital/remotedrone
+    repo: quay.io/ukhomeofficedigital/dronescheduler
     storage_driver: vfs
     tag:
       - latest
