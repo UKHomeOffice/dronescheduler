@@ -21,7 +21,7 @@ spec:
             memory: "256Mi"
         env:
           - name: CRONTASK_1
-            value: "* */2 * * * /dronescheduler"
+            value: "* 2 * * * /dronescheduler"
           - name: HOST
             value: "https://drone.notprod.homeoffice.gov.uk"
           - name: TOKEN
